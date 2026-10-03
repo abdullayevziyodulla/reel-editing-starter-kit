@@ -1,0 +1,278 @@
+{
+  "duration": 18.0,
+  "intro_duration": 0,
+  "segments": [
+    {
+      "seg": 1,
+      "start": 0.0,
+      "end": 2.0,
+      "text": "Start with words."
+    },
+    {
+      "seg": 2,
+      "start": 2.0,
+      "end": 4.0,
+      "text": "Show the screen."
+    },
+    {
+      "seg": 3,
+      "start": 4.0,
+      "end": 6.0,
+      "text": "List clear examples."
+    },
+    {
+      "seg": 4,
+      "start": 6.0,
+      "end": 8.0,
+      "text": "Ask a question."
+    },
+    {
+      "seg": 5,
+      "start": 8.0,
+      "end": 10.0,
+      "text": "Stack useful cards."
+    },
+    {
+      "seg": 6,
+      "start": 10.0,
+      "end": 12.0,
+      "text": "Remove a myth."
+    },
+    {
+      "seg": 7,
+      "start": 12.0,
+      "end": 14.0,
+      "text": "Check the facts."
+    },
+    {
+      "seg": 8,
+      "start": 14.0,
+      "end": 16.0,
+      "text": "Bring it together."
+    },
+    {
+      "seg": 9,
+      "start": 16.0,
+      "end": 18.0,
+      "text": "One simple action."
+    }
+  ],
+  "words": [
+    {
+      "seg": 1,
+      "w": "Start",
+      "start": 0.15,
+      "end": 0.65,
+      "raw_start": 0.15,
+      "raw_end": 0.65
+    },
+    {
+      "seg": 1,
+      "w": "with",
+      "start": 0.6833,
+      "end": 1.1833,
+      "raw_start": 0.6833,
+      "raw_end": 1.1833
+    },
+    {
+      "seg": 1,
+      "w": "words.",
+      "start": 1.2167,
+      "end": 1.7167,
+      "raw_start": 1.2167,
+      "raw_end": 1.7167
+    },
+    {
+      "seg": 2,
+      "w": "Show",
+      "start": 2.15,
+      "end": 2.65,
+      "raw_start": 2.15,
+      "raw_end": 2.65
+    },
+    {
+      "seg": 2,
+      "w": "the",
+      "start": 2.6833,
+      "end": 3.1833,
+      "raw_start": 2.6833,
+      "raw_end": 3.1833
+    },
+    {
+      "seg": 2,
+      "w": "screen.",
+      "start": 3.2167,
+      "end": 3.7167,
+      "raw_start": 3.2167,
+      "raw_end": 3.7167
+    },
+    {
+      "seg": 3,
+      "w": "List",
+      "start": 4.15,
+      "end": 4.65,
+      "raw_start": 4.15,
+      "raw_end": 4.65
+    },
+    {
+      "seg": 3,
+      "w": "clear",
+      "start": 4.6833,
+      "end": 5.1833,
+      "raw_start": 4.6833,
+      "raw_end": 5.1833
+    },
+    {
+      "seg": 3,
+      "w": "examples.",
+      "start": 5.2167,
+      "end": 5.7167,
+      "raw_start": 5.2167,
+      "raw_end": 5.7167
+    },
+    {
+      "seg": 4,
+      "w": "Ask",
+      "start": 6.15,
+      "end": 6.65,
+      "raw_start": 6.15,
+      "raw_end": 6.65
+    },
+    {
+      "seg": 4,
+      "w": "a",
+      "start": 6.6833,
+      "end": 7.1833,
+      "raw_start": 6.6833,
+      "raw_end": 7.1833
+    },
+    {
+      "seg": 4,
+      "w": "question.",
+      "start": 7.2167,
+      "end": 7.7167,
+      "raw_start": 7.2167,
+      "raw_end": 7.7167
+    },
+    {
+      "seg": 5,
+      "w": "Stack",
+      "start": 8.15,
+      "end": 8.65,
+      "raw_start": 8.15,
+      "raw_end": 8.65
+    },
+    {
+      "seg": 5,
+      "w": "useful",
+      "start": 8.6833,
+      "end": 9.1833,
+      "raw_start": 8.6833,
+      "raw_end": 9.1833
+    },
+    {
+      "seg": 5,
+      "w": "cards.",
+      "start": 9.2167,
+      "end": 9.7167,
+      "raw_start": 9.2167,
+      "raw_end": 9.7167
+    },
+    {
+      "seg": 6,
+      "w": "Remove",
+      "start": 10.15,
+      "end": 10.65,
+      "raw_start": 10.15,
+      "raw_end": 10.65
+    },
+    {
+      "seg": 6,
+      "w": "a",
+      "start": 10.6833,
+      "end": 11.1833,
+      "raw_start": 10.6833,
+      "raw_end": 11.1833
+    },
+    {
+      "seg": 6,
+      "w": "myth.",
+      "start": 11.2167,
+      "end": 11.7167,
+      "raw_start": 11.2167,
+      "raw_end": 11.7167
+    },
+    {
+      "seg": 7,
+      "w": "Check",
+      "start": 12.15,
+      "end": 12.65,
+      "raw_start": 12.15,
+      "raw_end": 12.65
+    },
+    {
+      "seg": 7,
+      "w": "the",
+      "start": 12.6833,
+      "end": 13.1833,
+      "raw_start": 12.6833,
+      "raw_end": 13.1833
+    },
+    {
+      "seg": 7,
+      "w": "facts.",
+      "start": 13.2167,
+      "end": 13.7167,
+      "raw_start": 13.2167,
+      "raw_end": 13.7167
+    },
+    {
+      "seg": 8,
+      "w": "Bring",
+      "start": 14.15,
+      "end": 14.65,
+      "raw_start": 14.15,
+      "raw_end": 14.65
+    },
+    {
+      "seg": 8,
+      "w": "it",
+      "start": 14.6833,
+      "end": 15.1833,
+      "raw_start": 14.6833,
+      "raw_end": 15.1833
+    },
+    {
+      "seg": 8,
+      "w": "together.",
+      "start": 15.2167,
+      "end": 15.7167,
+      "raw_start": 15.2167,
+      "raw_end": 15.7167
+    },
+    {
+      "seg": 9,
+      "w": "One",
+      "start": 16.15,
+      "end": 16.65,
+      "raw_start": 16.15,
+      "raw_end": 16.65
+    },
+    {
+      "seg": 9,
+      "w": "simple",
+      "start": 16.6833,
+      "end": 17.1833,
+      "raw_start": 16.6833,
+      "raw_end": 17.1833
+    },
+    {
+      "seg": 9,
+      "w": "action.",
+      "start": 17.2167,
+      "end": 17.7167,
+      "raw_start": 17.2167,
+      "raw_end": 17.7167
+    }
+  ]
+}

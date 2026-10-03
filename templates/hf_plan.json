@@ -1,0 +1,35 @@
+{
+  "base": "output/CLIP_clean.mp4",
+  "name": "topic-clean",
+  "theme": "light",
+  "caption_y": 900,
+  "caption_style": "mono",
+  "emphasis": [],
+  "face_center": [
+    540,
+    800
+  ],
+  "cut_src_top": 350,
+  "speaker": {
+    "scale": 0.68,
+    "head_top_src": 370,
+    "head_y": 1015,
+    "card_top": 1130,
+    "card_w": 720,
+    "radius": 64
+  },
+  "music": null,
+  "layout": [
+    {
+      "start": 0,
+      "end": 1,
+      "mode": "top",
+      "zoom": [
+        1,
+        1
+      ]
+    }
+  ],
+  "scenes": [],
+  "sfx": []
+}

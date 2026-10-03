@@ -1,0 +1,237 @@
+{
+  "base": "output/demo_clean.mp4",
+  "face_center": [
+    540,
+    850
+  ],
+  "split_face_top": 300,
+  "grade": "eq=contrast=1:saturation=1",
+  "caption_style": {
+    "size": 64,
+    "accent": "#65caff",
+    "pill": true,
+    "font": "Inter.ttf",
+    "face_y": 1622,
+    "split_y": 960,
+    "full_y": 1450
+  },
+  "highlight": [
+    "WORDS",
+    "FACTS",
+    "ACTION"
+  ],
+  "music": {
+    "file": "assets/music/demo_ambient.wav",
+    "db": -16,
+    "start": 0
+  },
+  "layout": [
+    {
+      "start": 0,
+      "end": 2,
+      "mode": "face",
+      "zoom": [
+        1,
+        1.02
+      ]
+    },
+    {
+      "start": 2,
+      "end": 4,
+      "mode": "split",
+      "zoom": [
+        1,
+        1.02
+      ],
+      "broll": "assets/broll/demo_2.png",
+      "kb": [
+        1,
+        1.04
+      ]
+    },
+    {
+      "start": 4,
+      "end": 6,
+      "mode": "full",
+      "zoom": [
+        1,
+        1.02
+      ],
+      "broll": "assets/broll/demo_3.png",
+      "kb": [
+        1,
+        1.04
+      ]
+    },
+    {
+      "start": 6,
+      "end": 8,
+      "mode": "face",
+      "zoom": [
+        1,
+        1.02
+      ]
+    },
+    {
+      "start": 8,
+      "end": 10,
+      "mode": "split",
+      "zoom": [
+        1,
+        1.02
+      ],
+      "broll": "assets/broll/demo_2.png",
+      "kb": [
+        1,
+        1.04
+      ]
+    },
+    {
+      "start": 10,
+      "end": 12,
+      "mode": "full",
+      "zoom": [
+        1,
+        1.02
+      ],
+      "broll": "assets/broll/demo_3.png",
+      "kb": [
+        1,
+        1.04
+      ]
+    },
+    {
+      "start": 12,
+      "end": 14,
+      "mode": "face",
+      "zoom": [
+        1,
+        1.02
+      ]
+    },
+    {
+      "start": 14,
+      "end": 16,
+      "mode": "split",
+      "zoom": [
+        1,
+        1.02
+      ],
+      "broll": "assets/broll/demo_2.png",
+      "kb": [
+        1,
+        1.04
+      ]
+    },
+    {
+      "start": 16,
+      "end": 18,
+      "mode": "full",
+      "zoom": [
+        1,
+        1.02
+      ],
+      "broll": "assets/broll/demo_3.png",
+      "kb": [
+        1,
+        1.04
+      ]
+    }
+  ],
+  "graphics": [
+    {
+      "type": "text_hook",
+      "start": 0,
+      "end": 2,
+      "text": "WORD-TIMED EDITS",
+      "size": 66,
+      "y": 300
+    },
+    {
+      "type": "title",
+      "start": 2,
+      "end": 4,
+      "text": "DEMO",
+      "sub": "Your project",
+      "logo": "assets/gfx/demo_logo.png",
+      "y": 300
+    },
+    {
+      "type": "hud",
+      "start": 4,
+      "end": 6
+    },
+    {
+      "type": "logo_card",
+      "start": 6,
+      "end": 8,
+      "logo": "assets/gfx/demo_logo.png",
+      "tag": "EXAMPLE",
+      "y": 350
+    },
+    {
+      "type": "stamp",
+      "start": 12,
+      "end": 14,
+      "text": "FACT",
+      "kind": "check",
+      "y": 350
+    },
+    {
+      "type": "comment",
+      "start": 16,
+      "end": 18,
+      "text": "GUIDE",
+      "type_at": 0.2,
+      "per_char": 0.08,
+      "y": 330
+    }
+  ],
+  "sfx": [
+    {
+      "t": 0,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 2,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 4,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 6,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 8,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 10,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 12,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 14,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    },
+    {
+      "t": 16,
+      "file": "assets/sfx/pop.mp3",
+      "db": -12
+    }
+  ]
+}

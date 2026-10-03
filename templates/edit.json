@@ -1,0 +1,30 @@
+{
+  "base": "output/CLIP_clean.mp4",
+  "face_center": [
+    540,
+    800
+  ],
+  "split_face_top": 350,
+  "caption_style": {
+    "size": 72,
+    "accent": "#65caff",
+    "pill": false,
+    "font": "Inter.ttf",
+    "face_y": 1622
+  },
+  "highlight": [],
+  "music": null,
+  "layout": [
+    {
+      "start": 0,
+      "end": 1,
+      "mode": "face",
+      "zoom": [
+        1,
+        1
+      ]
+    }
+  ],
+  "graphics": [],
+  "sfx": []
+}

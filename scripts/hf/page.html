@@ -1,0 +1,32 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face {font-family:Inter;src:url('__FONT_BASE__/Inter.ttf');font-weight:100 900;font-style:normal;}
+@font-face {font-family:'Playfair Display';src:url('__FONT_BASE__/PlayfairDisplay-Italic.ttf');font-weight:400 900;font-style:italic;}
+</style>
+<style>
+  html, body { margin: 0; background: transparent; width: 1080px; height: 1920px; overflow: hidden; }
+  #root { position: relative; width: 1080px; height: 1920px; }
+  #root > * { position: absolute; }
+  .card { position: absolute; background: #fff; border-radius: 36px; transform-origin: center;
+          box-shadow: 0 12px 24px rgba(0,0,0,.08), 0 30px 70px rgba(0,0,0,.10); }
+  .win { position: absolute; border-radius: 22px; transform-origin: center;
+         box-shadow: 0 12px 24px rgba(0,0,0,.10), 0 34px 80px rgba(0,0,0,.16); }
+  .bar { height: 58px; background: #fff; border-radius: 22px 22px 0 0; display: flex; align-items: center; padding-left: 24px; gap: 12px; }
+  .bar i { width: 18px; height: 18px; border-radius: 50%; display: inline-block; }
+  .bar span { margin-left: 18px; font: 800 26px Inter; color: #555; }
+  .chip { font: 800 28px Inter; padding: 10px 22px; border-radius: 40px; background: #f0f0f2; color: #111; white-space: nowrap; }
+  .chip.big { font-size: 36px; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,.14); }
+  .bubble { position: absolute; max-width: 640px; padding: 26px 34px; border-radius: 40px; font: 500 40px/1.25 Inter; }
+  .bubble.me { right: 40px; background: #0a84ff; color: #fff; border-bottom-right-radius: 10px; }
+  .bubble.ai { left: 40px; background: #efeff2; color: #111; border-bottom-left-radius: 10px; }
+  [data-theme="dark"] .card, [data-theme="dark"] .bar { background:#1A1C21; }
+  [data-theme="dark"] .bar span { color:#b8bbc4; }
+  [data-theme="dark"] .chip { background:#30343e; color:#fff; }
+  [data-theme="dark"] .chip.big { background:#1A1C21; }
+  [data-theme="dark"] .bubble.ai { background:#282b33; color:#fff; }
+</style></head>
+<body><div id="root"></div>
+<script>window.PLAN = __PLAN__;</script>
+<script src="runtime.js"></script>
+</body></html>

@@ -1,0 +1,190 @@
+{
+  "base": "output/demo_clean.mp4",
+  "name": "demo-motion-cards",
+  "theme": "light",
+  "caption_style": "capsule",
+  "caption_y": 900,
+  "emphasis": [
+    "words",
+    "facts"
+  ],
+  "face_center": [
+    540,
+    850
+  ],
+  "cut_src_top": 330,
+  "layout": [
+    {
+      "start": 0,
+      "end": 16,
+      "mode": "top",
+      "zoom": [
+        1,
+        1
+      ]
+    },
+    {
+      "start": 16,
+      "end": 18,
+      "mode": "face",
+      "zoom": [
+        1,
+        1
+      ]
+    }
+  ],
+  "scenes": [
+    {
+      "type": "counter",
+      "start": 0,
+      "end": 2,
+      "logo": "assets/gfx/demo_logo.png",
+      "number": 3,
+      "unit": "steps",
+      "title": "Example workflow",
+      "count_at": 0.2
+    },
+    {
+      "type": "window",
+      "start": 2,
+      "end": 4,
+      "media": "assets/broll/demo_1.png",
+      "title": "Your demonstration",
+      "cursor": [
+        {
+          "t": 3,
+          "from": [
+            40,
+            40
+          ],
+          "x": 450,
+          "y": 220
+        }
+      ]
+    },
+    {
+      "type": "tiles",
+      "start": 4,
+      "end": 6,
+      "items": [
+        {
+          "t": 4.15,
+          "img": "assets/broll/demo_1.png",
+          "label": "Example 1"
+        },
+        {
+          "t": 4.45,
+          "img": "assets/broll/demo_2.png",
+          "label": "Example 2"
+        },
+        {
+          "t": 4.75,
+          "img": "assets/broll/demo_3.png",
+          "label": "Example 3"
+        }
+      ]
+    },
+    {
+      "type": "chat",
+      "start": 6,
+      "end": 8,
+      "title": "Example chat",
+      "q": "What can I try?",
+      "a": "Start with one clear example.",
+      "q_t0": 6.1,
+      "q_t1": 6.65,
+      "a_t0": 7,
+      "a_t1": 7.75
+    },
+    {
+      "type": "stack",
+      "start": 8,
+      "end": 10,
+      "cards": [
+        {
+          "t": 8.1,
+          "kind": "github",
+          "owner": "example",
+          "repo": "sample-project",
+          "chips": [
+            "Demo",
+            "Open source"
+          ]
+        },
+        {
+          "t": 8.5,
+          "kind": "logo",
+          "img": "assets/gfx/demo_logo.png",
+          "h": 110,
+          "tag": "EXAMPLE"
+        }
+      ]
+    },
+    {
+      "type": "strike",
+      "start": 10,
+      "end": 12,
+      "title": "Example myth",
+      "sub": "Verify before publishing",
+      "strike_at": 10.8
+    },
+    {
+      "type": "checklist",
+      "start": 12,
+      "end": 14,
+      "title": "Review",
+      "rows": [
+        {
+          "t": 12.15,
+          "icon": "✓",
+          "name": "Timing",
+          "desc": "Words first"
+        },
+        {
+          "t": 12.5,
+          "icon": "✓",
+          "name": "Audio",
+          "desc": "Clear voice"
+        }
+      ]
+    },
+    {
+      "type": "converge",
+      "start": 14,
+      "end": 16,
+      "media": "assets/broll/demo_2.png",
+      "title": "One workflow",
+      "chips_at": 14.1,
+      "merge_at": 15,
+      "chips": [
+        {
+          "x": 190,
+          "y": 180,
+          "label": "Words"
+        },
+        {
+          "x": 900,
+          "y": 740,
+          "label": "Visuals"
+        }
+      ]
+    },
+    {
+      "type": "comment",
+      "start": 16,
+      "end": 18,
+      "title": "One clear action",
+      "placeholder": "Write a comment...",
+      "text": "GUIDE",
+      "type_at": 16.2,
+      "per_char": 0.08,
+      "send_at": 17.2
+    }
+  ],
+  "music": {
+    "file": "assets/music/demo_ambient.wav",
+    "db": -16,
+    "start": 0
+  },
+  "sfx": []
+}

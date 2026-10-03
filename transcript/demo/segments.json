@@ -1,0 +1,65 @@
+{
+  "clip": "raw/demo.mp4",
+  "duration": 18,
+  "fps": 30,
+  "fps_str": "30/1",
+  "width": 1080,
+  "height": 1920,
+  "model": "synthetic-demo-NOT-ASR",
+  "segments": [
+    {
+      "i": 1,
+      "start": 0,
+      "end": 2,
+      "text": "Start with words."
+    },
+    {
+      "i": 2,
+      "start": 2,
+      "end": 4,
+      "text": "Show the screen."
+    },
+    {
+      "i": 3,
+      "start": 4,
+      "end": 6,
+      "text": "List clear examples."
+    },
+    {
+      "i": 4,
+      "start": 6,
+      "end": 8,
+      "text": "Ask a question."
+    },
+    {
+      "i": 5,
+      "start": 8,
+      "end": 10,
+      "text": "Stack useful cards."
+    },
+    {
+      "i": 6,
+      "start": 10,
+      "end": 12,
+      "text": "Remove a myth."
+    },
+    {
+      "i": 7,
+      "start": 12,
+      "end": 14,
+      "text": "Check the facts."
+    },
+    {
+      "i": 8,
+      "start": 14,
+      "end": 16,
+      "text": "Bring it together."
+    },
+    {
+      "i": 9,
+      "start": 16,
+      "end": 18,
+      "text": "One simple action."
+    }
+  ]
+}

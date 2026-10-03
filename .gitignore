@@ -1,0 +1,15 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+*.pyc
+raw/*
+!raw/.gitkeep
+transcript/*
+!transcript/.gitkeep
+output/*
+!output/.gitkeep
+final/*
+!final/.gitkeep
+assets/models/*.tflite

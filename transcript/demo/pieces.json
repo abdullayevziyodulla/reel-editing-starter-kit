@@ -1,0 +1,74 @@
+[
+  {
+    "i": 1,
+    "start": 0.0,
+    "end": 2.0,
+    "text": "Start with words.",
+    "speech_start": 0,
+    "speech_end": 2
+  },
+  {
+    "i": 2,
+    "start": 2.0,
+    "end": 4.0,
+    "text": "Show the screen.",
+    "speech_start": 2,
+    "speech_end": 4
+  },
+  {
+    "i": 3,
+    "start": 4.0,
+    "end": 6.0,
+    "text": "List clear examples.",
+    "speech_start": 4,
+    "speech_end": 6
+  },
+  {
+    "i": 4,
+    "start": 6.0,
+    "end": 8.0,
+    "text": "Ask a question.",
+    "speech_start": 6,
+    "speech_end": 8
+  },
+  {
+    "i": 5,
+    "start": 8.0,
+    "end": 10.0,
+    "text": "Stack useful cards.",
+    "speech_start": 8,
+    "speech_end": 10
+  },
+  {
+    "i": 6,
+    "start": 10.0,
+    "end": 12.0,
+    "text": "Remove a myth.",
+    "speech_start": 10,
+    "speech_end": 12
+  },
+  {
+    "i": 7,
+    "start": 12.0,
+    "end": 14.0,
+    "text": "Check the facts.",
+    "speech_start": 12,
+    "speech_end": 14
+  },
+  {
+    "i": 8,
+    "start": 14.0,
+    "end": 16.0,
+    "text": "Bring it together.",
+    "speech_start": 14,
+    "speech_end": 16
+  },
+  {
+    "i": 9,
+    "start": 16.0,
+    "end": 18.0,
+    "text": "One simple action.",
+    "speech_start": 16,
+    "speech_end": 18
+  }
+]
