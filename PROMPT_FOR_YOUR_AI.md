@@ -1,6 +1,6 @@
 # Copy this message to your editing assistant
 
-I want you to edit my vertical talking-head footage in this folder. Read AGENTS.md, CLAUDE.md and README.md first. Use the existing pipeline and my own media, not a new unrelated toolchain.
+I want you to edit my vertical talking-head footage in this folder. Read AGENTS.md, CLAUDE.md and README.md first. Use the existing pipeline and my own media. Motion graphics must use the installed real HyperFrames framework; read docs/HYPERFRAMES.md. Do not substitute a custom Playwright capture loop or Remotion.
 
 Source: raw/REPLACE_WITH_MY_CLIP.mp4
 Language: REPLACE_WITH_LANGUAGE (default Uzbek Latin script)

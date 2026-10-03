@@ -1,31 +1,32 @@
-# Release verification — 2026-10-03
+# Release verification — HyperFrames 1.1.0, 2026-10-03
 
-Tested on Windows with Python 3.12.10 and a newly created venv installed from this kit's requirements. `pip check` reports no broken requirements. The complete resolved package list is provided separately as a Windows/Python 3.12 lock reference.
+Tested on Windows with Python 3.12.10, Node.js 24.20.0, FFmpeg 9.0.1 and pinned HyperFrames 0.8.114. Python dependencies use the previously verified kit venv. Node dependencies are installed with `npm ci`. The Python lock remains a Windows/Python 3.12 reference.
 
 Passed checks:
 
 - All Python scripts compile; PowerShell setup parses.
-- Required imports, bundled Inter font loading and a real Playwright Chromium launch pass.
+- Required imports, bundled Inter font loading and the actual HyperFrames CLI/browser pass.
 - Official optional segmentation model downloads; MediaPipe speaker-card path executes on the synthetic frame (no real face used).
 - Six timing regression tests: raw→output reorder, intro offset, clipped words, both caption builders' chronology, padding around neighboring speech, and rejection of duplicate/missing IDs.
 - Both plan validators pass on the demo.
 - Dynamic half-resolution preview reviewed at six representative points.
-- All nine motion-card scene types reviewed individually in both light and dark themes; light capsules including full-face mode and dark mono captions are readable.
-- Full 18-second dynamic and motion-card renders complete.
+- Native HyperFrames lint, runtime, layout and contrast checks pass for both light and dark demos with zero errors or warnings. All nine scene types were visually reviewed in both themes.
+- Full 18-second 1080×1920/30fps motion-card render completes through the actual HyperFrames CLI; final encoded video inspected at nine timestamps. The dynamic example is retained from the verified 1.0 release.
 - Complete-mix two-pass normalization, decoded ebur128 and full decode pass for both example videos.
-- ZIP extracted to a separate folder containing spaces; scripts compile and tests pass there, both renderers' plan validation works, and local-font Chromium frames render correctly.
+- ZIP relocation is checked separately with fresh Node dependencies, timing tests and real HyperFrames snapshots from a folder containing spaces.
 - Cached transcription/alignment exit without replacing data or making an ASR/API call.
 - Imported reordered variant reuses identical demo footage/transcript; order 9/1/7 maps correctly to a 6-second base.
 - Clean repack includes only original audited distribution files, excluding a new variant, unlisted sentinel file and generated runtime HTML.
 - Dark capsule captions checked separately in top and face modes; dark text remains readable on white capsules.
+- Moving b-roll renders through persistent HyperFrames video clips. Forward/backward/repeated seeking produces identical media pixels; tiny whole-frame text-antialiasing differences were at most two RGB levels.
 
 | Demo | Duration | Integrated loudness | Decoded true peak |
 |---|---:|---:|---:|
 | Dynamic | 18.000s | -14.0 LUFS | -6.3 dBTP |
-| Clean motion cards | 18.000s | -14.0 LUFS | -4.8 dBTP |
+| HyperFrames motion cards (1.1) | 18.000s | -14.0 LUFS | -8.0 dBTP |
 
 The demo tone has a different crest factor from speech; these values prove the finalizer/check pipeline, not a music setting for everyone's real recordings. Inspect examples/previews/ for videos, visual review sheets and machine-readable measurements.
 
 The source workspace's footage, finals, faces, transcripts, credentials and existing pipeline scripts were not modified. The kit was prepared separately from reviewed code and generic/new assets. No new ASR call or paid API transcription was used for this release.
 
-Limits: actual Gemini account/model transcription was not exercised; neither was a new Whisper model download/alignment of real speech. Those paths are configurable and retain the original text/alignment method. Human-head segmentation quality still needs inspection on each person's own footage. macOS/Linux setup is supplied but not tested here. The release uses an allowlisted manifest with ZIP integrity, privacy and checksum checks.
+Limits: actual Gemini account/model transcription was not exercised; neither was a new Whisper model download/alignment of real speech. Human-head segmentation quality needs inspection on each person's footage. macOS/Linux setup is supplied but has not been tested on an M2. Windows timings do not predict M2 performance. Optional Docker diagnostics may fail without affecting local rendering. The release uses an allowlisted manifest with ZIP integrity, privacy and checksum checks.

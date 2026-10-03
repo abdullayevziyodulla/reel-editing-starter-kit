@@ -1,8 +1,8 @@
 # Boshlash
 
-Bu tayyor montaj papkasi. Ichida ikki xil uslub, skriptlar, shablonlar va sun'iy demo bor. Hech kimning yuzi, shaxsiy videosi yoki API kaliti yo'q.
+Bu tayyor montaj papkasi. Ichida ikki xil uslub (dinamik va haqiqiy HyperFrames), skriptlar, shablonlar va sun'iy demo bor. Hech kimning yuzi, shaxsiy videosi yoki API kaliti yo'q.
 
-1. ZIPni alohida papkaga oching. Python 3.12 va FFmpeg o'rnating. Terminalda `ffmpeg -version` va `ffprobe -version` ishlashi kerak.
+1. ZIPni alohida papkaga oching. Python 3.12, Node.js 22+ va FFmpeg o'rnating. Terminalda `node --version`, `npm --version`, `ffmpeg -version` va `ffprobe -version` ishlashi kerak.
 2. PowerShellni shu papkada ochib, `powershell -ExecutionPolicy Bypass -File .\setup.ps1` yozing.
 3. Avval README'dagi demo buyruqlarini sinab ko'ring. Demo uchun API kalit kerak emas. Videodagi ovoz test signali; matn haqiqiy transkript emas.
 4. O'z videongizni yangi nom bilan olib kiring: `.venv/Scripts/python.exe -X utf8 scripts/toolkit.py init "D:\video.mp4" birinchi_video`.
@@ -13,5 +13,7 @@ Bu tayyor montaj papkasi. Ichida ikki xil uslub, skriptlar, shablonlar va sun'iy
 9. To'liq renderdan keyin `toolkit.py finalize` bilan umumiy ovozni tekshiring. Faqat o'tgan video `final/`ga tushadi.
 
 Hamma aniq buyruq va sozlamalar `README.md`da. AI montajni rejalashtiradi; bu papka o'zi mustaqil ravishda yaxshi b-roll tanlab yoki ssenariy yozib bermaydi.
+
+HyperFrames uslubi `compose_hf.py` orqali haqiqiy HyperFrames CLI bilan render qilinadi. `--prepare` loyiha yaratadi; `scripts/hyperframes_cli.py preview transcript/VIDEO_NOMI/hyperframes` Studio preview ochadi. Mac'da `.venv/bin/python` ishlating va `sh setup.sh` bilan o'rnating. Mac setup hali bu relizda tekshirilmagan.
 
 Do'stingizga yana yuborayotganda asl toza ZIPni yuboring. Ishlatilgan papkangiz ichida video, yuz va `.env` bo'lishi mumkin.

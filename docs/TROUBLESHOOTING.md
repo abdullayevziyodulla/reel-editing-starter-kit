@@ -4,9 +4,9 @@
 |---|---|
 | Python package/native wheel fails | Use Python 3.12 64-bit and a fresh .venv, then requirements.txt. Avoid mixing another project's environment. |
 | ffmpeg/ffprobe not found | Install both and add their bin directory to PATH; reopen the terminal. Check -version. |
-| Chromium executable missing | Run python -m playwright install chromium in this venv. No Edge installation is required. |
-| Use existing Edge instead | Set HF_BROWSER_CHANNEL=msedge in the process environment. This is optional and only works where Edge is installed. |
-| Browser Linux dependency error | Follow Playwright's OS dependency instructions; platform setup outside Windows is not tested in this kit. |
+| HyperFrames package/Node missing | Install Node.js 22+, then run npm ci in the kit root. |
+| HyperFrames browser missing | Run python scripts/hyperframes_cli.py browser ensure, then doctor. The old HF_BROWSER_CHANNEL option is no longer used. |
+| Browser Linux dependency error | Follow HyperFrames/Chrome's OS dependency diagnostics; platform setup outside Windows is not tested in this kit. |
 | Font cannot open | Ensure assets/fonts contains Inter.ttf and PlayfairDisplay-Italic.ttf. Don't substitute Windows font paths; OFL files are included. |
 | Existing transcript but API/model error | Do not transcribe again. Use existing segments/words, write cuts, render. Pass a current --model only for genuinely new transcription. |
 | Gemini model unavailable/rate limit | Verify the current audio-capable model ID and account access; retry later. The script retries three times and avoids logging credential-bearing exception details. |
@@ -28,4 +28,4 @@
 | Final filename already exists | Choose a unique name. --replace is explicit and only for intended replacement. |
 | Sharer worries about personal files | Send the original distribution ZIP. Do not zip the working folder after adding your footage, faces or .env. |
 
-For dependency troubleshooting, `scripts/bootstrap.py --doctor` tests FFmpeg presence, imports, font loading and an actual Chromium launch. `requirements-lock-windows-py312.txt` records the complete freshly installed test environment as an optional reproducibility reference. Avoid printing environment variables or credential files when diagnosing.
+For dependency troubleshooting, `scripts/bootstrap.py --doctor` tests FFmpeg presence, Python imports, bundled font loading and the pinned HyperFrames doctor. `requirements-lock-windows-py312.txt` records the Python package set as an optional reproducibility reference; `package-lock.json` pins Node dependencies. Avoid printing environment variables or credential files when diagnosing.

@@ -1,16 +1,10 @@
-"""Clean "clean motion-card" style edit: off-white canvas, HTML motion cards on top, speaker in an arched cutout below,
-1-2 word captions (bold sans + italic serif emphasis), auto UI sound effects.
+"""Real HyperFrames motion-card entry point and reusable speaker/caption helpers.
+Off-white/dark canvas, HTML cards, segmented speaker, word-timed captions and UI sounds.
 
 Plan: transcript/<clip>/hf_plan.json   Usage: python scripts/compose_hf.py raw/clip.mp4 [--preview] [--frames 0.5,3.2]
 """
-import io
-import os
-import json
 import random
-import shutil
-import subprocess
 import sys
-import time
 from pathlib import Path
 
 import mediapipe as mp
@@ -18,10 +12,8 @@ import numpy as np
 from mediapipe.tasks import python as mpt
 from mediapipe.tasks.python import vision
 from PIL import Image, ImageDraw, ImageFilter
-from playwright.sync_api import sync_playwright
 
 sys.path.insert(0, str(Path(__file__).parent))
-from compose import Media, cover, face_zoom, mix_audio, probe  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 HF = Path(__file__).parent / "hf"
@@ -157,131 +149,8 @@ def auto_sfx(plan):
 
 
 def main():
-    clip = Path(sys.argv[1]).resolve()
-    preview = "--preview" in sys.argv
-    only = None
-    if "--frames" in sys.argv:
-        only = [float(x) for x in sys.argv[sys.argv.index("--frames") + 1].split(",")]
-    job = ROOT / "transcript" / clip.stem
-    plan = json.loads((job / "hf_plan.json").read_text(encoding="utf-8"))
-    base = ROOT / plan["base"]
-    _, _, dur, _ = probe(base)
-    n_frames = int(round(dur * FPS))
-
-    plan["captions"] = chunk_captions(job)
-    for cap in plan["captions"]:
-        cap["start"] += plan.get("intro_duration", 0)
-        cap["end"] += plan.get("intro_duration", 0)
-    plan.setdefault("caption_y", 990)
-    plan["emphasis"] = [w.lower() for w in plan.get("emphasis", [])]
-    for sc in plan["scenes"]:  # local images -> file URLs for the browser
-        for holder in [sc] + sc.get("items", []) + sc.get("cards", []):
-            for key in ("img", "logo"):
-                if key in holder:
-                    holder[key] = (ROOT / holder[key]).as_uri()
-    page_dir = job / "hf"
-    page_dir.mkdir(exist_ok=True)
-    (job / "check").mkdir(exist_ok=True)
-    shutil.copy(HF / "runtime.js", page_dir / "runtime.js")
-    (page_dir / "index.html").write_text((HF / "page.html").read_text(encoding="utf-8")
-                                         .replace("__PLAN__", json.dumps(plan, ensure_ascii=False).replace("</", "<\\/"))
-                                         .replace("__FONT_BASE__", (ROOT / "assets/fonts").as_uri()), encoding="utf-8")
-
-    media = {}
-    for sc in plan["scenes"]:
-        if sc.get("media") and sc["media"] not in media:
-            media[sc["media"]] = Media(sc["media"])
-    bg = background(plan.get('theme', 'light'))
-    face_cx, face_cy = plan.get("face_center", [540, 780])
-    cut_src_top = plan.get("cut_src_top", 330)
-    amask = arch_mask(W, H - CUT_TOP)
-    speaker = Speaker(plan["speaker"]) if plan.get("speaker") else None
-
-    sfx = ([] if plan.get("auto_sfx", True) is False else auto_sfx(plan)) + plan.get("sfx", [])
-    (job / "hf_sfx.json").write_text(json.dumps(sfx, indent=1), encoding="utf-8")
-    audio = job / "mix_hf.m4a"
-    if not only:
-        mix_audio({"music": plan.get("music"), "sfx": sfx}, base, dur, audio)
-
-    out = ROOT / "output" / f"{clip.stem}_nick{'_preview' if preview else ''}.mp4"
-    ow, oh = (W // 2, H // 2) if preview else (W, H)
-    grade = plan.get("grade", "eq=contrast=1.04:saturation=1.06,colorbalance=rs=0.03:gs=0.01:bs=-0.03")
-    dec = subprocess.Popen(["ffmpeg", "-v", "error", "-i", str(base), "-vf", f"fps={FPS},scale={W}:{H},{grade}",
-                            "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
-    enc = None
-    if not only:
-        enc = subprocess.Popen(["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{ow}x{oh}",
-                                "-r", str(FPS), "-i", "-", "-i", str(audio), "-map", "0:v", "-map", "1:a",
-                                "-c:v", "libx264", "-preset", "veryfast" if preview else "medium",
-                                "-crf", "23" if preview else "17", "-pix_fmt", "yuv420p", "-c:a", "copy",
-                                "-shortest", "-movflags", "+faststart", str(out)], stdin=subprocess.PIPE)
-    want = {int(round(x * FPS)) for x in only} if only else None
-
-    t_start = time.time()
-    with sync_playwright() as pw:
-        # Bundled Playwright Chromium is portable; optionally set HF_BROWSER_CHANNEL=msedge.
-        channel = os.environ.get("HF_BROWSER_CHANNEL")
-        browser = pw.chromium.launch(headless=True, **({"channel": channel} if channel else {}))
-        page = browser.new_page(viewport={"width": W, "height": H})
-        page.goto((page_dir / "index.html").as_uri())
-        page.wait_for_load_state("networkidle")
-        page.evaluate("document.fonts.ready.then(() => true)")
-        for i in range(n_frames):
-            buf = dec.stdout.read(W * H * 3)
-            if len(buf) < W * H * 3:
-                break
-            if want is not None and i not in want:
-                continue
-            t = i / FPS
-            cam = Image.frombuffer("RGB", (W, H), buf)
-            L = next((l for l in plan["layout"] if l["start"] <= t < l["end"]), {"mode": "top", "zoom": [1, 1]})
-            p = (t - L.get("start", 0)) / max(1e-6, L.get("end", dur) - L.get("start", 0))
-            z0, z1 = L.get("zoom", [1, 1])
-            z = z0 + (z1 - z0) * p
-            if L["mode"] == "face":
-                frame = face_zoom(cam, z, face_cx, face_cy)
-            elif speaker:
-                frame = speaker.draw(bg.copy(), cam, z)
-            else:
-                frame = bg.copy()
-                ch = (H - CUT_TOP) / z
-                cw = W / z
-                x0 = max(0, min(W - cw, face_cx - cw / 2))
-                y0 = cut_src_top + ((H - CUT_TOP) - ch) / 2
-                spk = cam.resize((W, H - CUT_TOP), Image.BILINEAR, box=(x0, y0, x0 + cw, y0 + ch))
-                frame.paste(spk, (0, CUT_TOP), amask)
-            holes = page.evaluate("t => render(t)", t)
-            for hd in holes:
-                if hd["w"] < 2 or hd["op"] <= 0:
-                    continue
-                src = media[hd["key"]].get(max(0.0, hd["local"]))
-                tile = cover(src, int(round(hd["w"])), int(round(hd["h"])))
-                m = Image.new("L", tile.size, 0)
-                rr = int(hd["r"] * hd["w"] / max(1, hd["w"]))
-                ImageDraw.Draw(m).rounded_rectangle((0, -rr, tile.width - 1, tile.height - 1), rr, fill=int(255 * hd["op"]))
-                frame.paste(tile, (int(round(hd["x"])), int(round(hd["y"]))), m)
-            ov = Image.open(io.BytesIO(page.screenshot(omit_background=True, type="png")))
-            frame = frame.convert("RGBA")
-            frame.alpha_composite(ov)
-            frame = frame.convert("RGB")
-            if only:
-                frame.resize((W // 3, H // 3), Image.BILINEAR).save(job / "check" / f"hf_{t:05.2f}.png")
-                continue
-            if preview:
-                frame = frame.resize((ow, oh), Image.BILINEAR)
-            enc.stdin.write(frame.tobytes())
-            if i % 150 == 0:
-                print(f"frame {i}/{n_frames}  {time.time() - t_start:.0f}s", flush=True)
-        browser.close()
-    dec.terminate()
-    if enc:
-        enc.stdin.close()
-        if enc.wait() != 0:
-            raise RuntimeError("FFmpeg encoding failed")
-        print(f"done in {time.time() - t_start:.0f}s -> {out}")
-        print("Normalize and verify the complete mix with toolkit.py finalize before delivery.")
-    else:
-        print(f"review frames in {job / 'check'}")
+    from hyperframes_pipeline import main as compose_with_hyperframes
+    compose_with_hyperframes()
 
 
 if __name__ == "__main__":

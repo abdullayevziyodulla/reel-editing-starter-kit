@@ -43,7 +43,7 @@ def doctor(skip_browser=False):
             failed.append(cmd + ' missing from PATH')
         else:
             print(cmd + ': found')
-    for name in ['numpy', 'PIL', 'google.genai', 'dotenv', 'faster_whisper', 'mediapipe', 'playwright.sync_api']:
+    for name in ['numpy', 'PIL', 'google.genai', 'dotenv', 'faster_whisper', 'mediapipe']:
         try:
             importlib.import_module(name)
             print(name + ': import OK')
@@ -54,20 +54,15 @@ def doctor(skip_browser=False):
         gfx.font('ariblk.ttf', 32)
         print('Bundled font: OK')
         if skip_browser:
-            print('Playwright Chromium: skipped; install before using motion cards')
+            print('HyperFrames browser: skipped; run hyperframes_cli.py browser ensure before motion cards')
             if failed:
                 raise RuntimeError('; '.join(failed))
             return
-        from playwright.sync_api import sync_playwright
-        with sync_playwright() as pw:
-            browser = pw.chromium.launch(headless=True)
-            page = browser.new_page()
-            page.set_content('<p>render check</p>')
-            assert page.locator('p').inner_text() == 'render check'
-            browser.close()
-        print('Playwright Chromium: OK')
+        from hyperframes_cli import run as hyperframes
+        hyperframes(['doctor'])
+        print('Pinned HyperFrames CLI/browser: OK')
     except Exception as e:
-        failed.append('Font/browser check: ' + type(e).__name__ + '; run setup and playwright install chromium')
+        failed.append('Font/HyperFrames check: ' + type(e).__name__ + '; run setup and hyperframes_cli.py browser ensure')
     print('Head breakout model:', 'present' if (ROOT / 'assets/models/selfie_segmenter.tflite').exists() else 'optional; run bootstrap.py --model')
     print('API credentials are not inspected. Demo/imported transcripts do not need an API key.')
     if failed:
@@ -176,7 +171,7 @@ def demo(assets_only=False):
         {'type': 'stack', 'start': 8, 'end': 10, 'cards': [{'t': 8.1, 'kind': 'github', 'owner': 'example', 'repo': 'sample-project', 'chips': ['Demo', 'Open source']}, {'t': 8.5, 'kind': 'logo', 'img': logo, 'h': 110, 'tag': 'EXAMPLE'}]},
         {'type': 'strike', 'start': 10, 'end': 12, 'title': 'Example myth', 'sub': 'Verify before publishing', 'strike_at': 10.8},
         {'type': 'checklist', 'start': 12, 'end': 14, 'title': 'Review', 'rows': [{'t': 12.15, 'icon': '✓', 'name': 'Timing', 'desc': 'Words first'}, {'t': 12.5, 'icon': '✓', 'name': 'Audio', 'desc': 'Clear voice'}]},
-        {'type': 'converge', 'start': 14, 'end': 16, 'media': 'assets/broll/demo_2.png', 'title': 'One workflow', 'chips_at': 14.1, 'merge_at': 15, 'chips': [{'x': 190, 'y': 180, 'label': 'Words'}, {'x': 900, 'y': 740, 'label': 'Visuals'}]},
+        {'type': 'converge', 'start': 14, 'end': 16, 'media': 'assets/broll/demo_2.png', 'title': 'One workflow', 'chips_at': 14.1, 'merge_at': 15, 'chips': [{'x': 190, 'y': 80, 'label': 'Words'}, {'x': 900, 'y': 740, 'label': 'Visuals'}]},
         {'type': 'comment', 'start': 16, 'end': 18, 'title': 'One clear action', 'placeholder': 'Write a comment...', 'text': 'GUIDE', 'type_at': 16.2, 'per_char': .08, 'send_at': 17.2}]
     hf = {'base': 'output/demo_clean.mp4', 'name': 'demo-motion-cards', 'theme': 'light', 'caption_style': 'capsule', 'caption_y': 900, 'emphasis': ['words', 'facts'], 'face_center': [540, 850], 'cut_src_top': 330,
           'layout': [{'start': 0, 'end': 16, 'mode': 'top', 'zoom': [1, 1]}, {'start': 16, 'end': 18, 'mode': 'face', 'zoom': [1, 1]}], 'scenes': scenes, 'music': {'file': 'assets/music/demo_ambient.wav', 'db': -16, 'start': 0}, 'sfx': []}

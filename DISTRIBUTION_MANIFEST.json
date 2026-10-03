@@ -1,6 +1,6 @@
 {
   "name": "Reel Editing Starter Kit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "date": "2026-10-03",
   "privacy": "Explicit reviewed source/doc/font/procedural-asset/synthetic-demo inventory; no user media or secrets.",
   "files": [
@@ -11,18 +11,18 @@
     },
     {
       "path": ".gitignore",
-      "bytes": 179,
-      "sha256": "3c494add156177a2ea3250d1ff16240d7a7e2a37aff7424c2fec829245baccdb"
+      "bytes": 244,
+      "sha256": "b360ac4c404f9917b00e6cd5403d4d21a10eb78189a7e978795f5b95fac81a6b"
     },
     {
       "path": "AGENTS.md",
-      "bytes": 482,
-      "sha256": "675ce0ac8e3741b06208479fc9b0c05ae468f0a07cd1270a298d7083ac4dd965"
+      "bytes": 559,
+      "sha256": "da9ef83fa331a881daede09974527122409f97a6df849f2b633ca0a7daa40e14"
     },
     {
       "path": "CLAUDE.md",
-      "bytes": 4217,
-      "sha256": "ef6e5991ad7800573d913049308b47328cb6890115e94b1d7c4cbd555202c83a"
+      "bytes": 4388,
+      "sha256": "fcc7531e6000d76e33199117be864dbd7e0c7eb2f60290945c599aed03e49f3c"
     },
     {
       "path": "LICENSE",
@@ -31,28 +31,28 @@
     },
     {
       "path": "PROMPT_FOR_YOUR_AI.md",
-      "bytes": 1910,
-      "sha256": "4350d698b0b724e9c25a1ae20d2ad76f6bf6d6f76c0067649eb4833e99cc2af2"
+      "bytes": 2036,
+      "sha256": "dbf589ee66470edc87ca5239ee2f7e174113ff39484199e77e112a0b3c710f09"
     },
     {
       "path": "README.md",
-      "bytes": 15247,
-      "sha256": "2e84ac4b54346b18367ecf34c5618b7764692ab27e11913ba0fed78b0b97d5f6"
+      "bytes": 16984,
+      "sha256": "abc19416889a5c9db091572c44b4c14800c1202ae298fb8d5835a724a8b3f311"
     },
     {
       "path": "START_HERE_UZ.md",
-      "bytes": 1712,
-      "sha256": "00e3ce088fe90eb5da4513a30f025820a7915957423a170a76c3ae2243bc6380"
+      "bytes": 2118,
+      "sha256": "3be9920379246a1ee0d70539ede2eefb3bcff44f235fdcf04c61c9efb1a3be6a"
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "bytes": 2260,
-      "sha256": "085e3a81ade04ca9475c7e12329e3e86eb0cf67c0ee462aeee3143189cd9c802"
+      "bytes": 2530,
+      "sha256": "7d095bbbcafaf85755b84c98f08edf8c8413acc4ccb19cd32810b52f6a6c1397"
     },
     {
       "path": "VERSION.txt",
-      "bytes": 42,
-      "sha256": "cbce5df5e4443836499bb40055d6adf4a12a60b1db0fe25910a30f928f41dddf"
+      "bytes": 58,
+      "sha256": "1cfa668d3b928939fdf9183f7118706acfd290652b58755f09bcca2ec0da3e6b"
     },
     {
       "path": "assets/broll/demo_1.png",
@@ -180,24 +180,29 @@
       "sha256": "10c15bb3b1067f6e7c055eb4090b1187befe6c4f3681568db77843bc5174caa7"
     },
     {
+      "path": "docs/HYPERFRAMES.md",
+      "bytes": 4846,
+      "sha256": "585a9fa64d61ac3b51b7f065d7102a1d2e415303846fbe5f2257026e05302638"
+    },
+    {
       "path": "docs/PLAN_REFERENCE.md",
-      "bytes": 7407,
-      "sha256": "583f6bf17196270e6837dc7dfdfd7533e5033309561d1ebbef26b8180146a344"
+      "bytes": 7907,
+      "sha256": "84cf5d09e511f48649add407f7d851fb36d8b28179050cd2c501a788630d13ae"
     },
     {
       "path": "docs/PRIVACY_AND_ASSETS.md",
-      "bytes": 1999,
-      "sha256": "279a4d711f1c2fbefd5cb94e755745c86026b56d0731b9f57e36ff3204799b7b"
+      "bytes": 2036,
+      "sha256": "e0e484ecb31e8c4c488dd272d138128a6835648185ae3bace517ced2f21d73d5"
     },
     {
       "path": "docs/TROUBLESHOOTING.md",
-      "bytes": 3939,
-      "sha256": "48a0a5ca55536b1b29607e122e7b29fd377712102b187c3854ea2c3316946184"
+      "bytes": 3960,
+      "sha256": "a2dfb55c5c9e54c0133cfe97ed085803bf6cdfb4caac24f5f8e225d054143efa"
     },
     {
       "path": "docs/VERIFICATION.md",
-      "bytes": 2999,
-      "sha256": "4f078c0dae108c6f99211d4c5df26fa56e706fd1029c1b6121d2106f3d344281"
+      "bytes": 3445,
+      "sha256": "a75618d87fde9bbd88ddcaf8a3982d7a9c0ae37020272085b0ec30ff3243d774"
     },
     {
       "path": "examples/dynamic_all_graphics.json",
@@ -206,13 +211,13 @@
     },
     {
       "path": "examples/hf_all_scenes_dark.json",
-      "bytes": 3685,
-      "sha256": "8d4223d19d641188106f10f494756dcfb4c5fd262afdad0c494371743855ec82"
+      "bytes": 3494,
+      "sha256": "3ccd035cede3e676e5dfc6adbdbae033836bfb5a28d3ffe399fa59ab7f0e68ca"
     },
     {
       "path": "examples/hf_all_scenes_light.json",
-      "bytes": 3689,
-      "sha256": "aadb1f5b19695fbecc744bbc612128ebb3bba031d9285dc38b55bf7da85c1bca"
+      "bytes": 3498,
+      "sha256": "dfb638d51a8ec01289c54159980a527a03db0bc61687273aa83d5f9ef6724b0d"
     },
     {
       "path": "examples/previews/demo-dynamic.mp4",
@@ -226,13 +231,13 @@
     },
     {
       "path": "examples/previews/demo-motion-cards.mp4",
-      "bytes": 1244903,
-      "sha256": "69ba3c7b9c914776f49da21d68a6a90a2fb502d4b7aff13082cb5ae871e7a864"
+      "bytes": 2112039,
+      "sha256": "eb4d8c56a0ca3a3af540334a7618a80b57aeea5791376a4493a15c40f0167c33"
     },
     {
       "path": "examples/previews/demo-motion-cards_verification.json",
-      "bytes": 167,
-      "sha256": "737e8fb07425f611b5f03f310389dab09d43d1b701e76e473b3ae9e1d732c75a"
+      "bytes": 171,
+      "sha256": "da8313918c3a9abdf5183920f6d969c015882b3ed753773b65fa6c868aeadbeb"
     },
     {
       "path": "examples/previews/dynamic_review.jpg",
@@ -241,13 +246,13 @@
     },
     {
       "path": "examples/previews/hf-dark_review.jpg",
-      "bytes": 244193,
-      "sha256": "6e2db429463816e86db0bebf9168ed1b161eac7b1d3e70f6340d62c1ed2265c5"
+      "bytes": 421106,
+      "sha256": "32196b59ec97b45f400d8f4ee292be97fff8937c617b7552d3795be0c82c4d95"
     },
     {
       "path": "examples/previews/hf-light_review.jpg",
-      "bytes": 259841,
-      "sha256": "a3e11f3d5706eea1f601f4928be9a7268eb572c249b88e946518490b180e8a3e"
+      "bytes": 61917,
+      "sha256": "9850898ebf638766ecb5d7e19f52d9512710a9da1b9d51cc1b1dd1d23e7cce77"
     },
     {
       "path": "final/.gitkeep",
@@ -258,6 +263,16 @@
       "path": "output/.gitkeep",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "package-lock.json",
+      "bytes": 62526,
+      "sha256": "0a37c0bab8d1e2b09ee21ceb98a8e9d26b541601a45b93b3c36bb6bd3c792d65"
+    },
+    {
+      "path": "package.json",
+      "bytes": 362,
+      "sha256": "8c54a8c1930ede02508e1e60b54fd7e7915d4bd8d69473d782e8cfd802b20321"
     },
     {
       "path": "raw/.gitkeep",
@@ -271,13 +286,13 @@
     },
     {
       "path": "requirements-lock-windows-py312.txt",
-      "bytes": 1103,
-      "sha256": "f83ce8cadb735f4572a2e9e3ae5caf3d8e071c87e458035f3d70c0f1731954b6"
+      "bytes": 996,
+      "sha256": "f946d2b455879bd56b7125c4f60b288a2710422589ff7ba3ca9867c13a924879"
     },
     {
       "path": "requirements.txt",
-      "bytes": 215,
-      "sha256": "423671f08f4a40f2193211c663d80079cc81765b703887081e39e7512d869295"
+      "bytes": 196,
+      "sha256": "832372546c569163142bc9d7c6f42b3f01fe4ec417634b684d1b9171aaab9c15"
     },
     {
       "path": "scripts/align.py",
@@ -286,8 +301,8 @@
     },
     {
       "path": "scripts/bootstrap.py",
-      "bytes": 13981,
-      "sha256": "ec7942e02ca706eb322d3ad59a4a4eb2c28eceb54194f1cf705de2582fa1b408"
+      "bytes": 13753,
+      "sha256": "9e46667a1c7f1473b3c746ebdd2d70ae7c229aab3bd6a0b814f9eb9b41311f1b"
     },
     {
       "path": "scripts/compose.py",
@@ -296,8 +311,8 @@
     },
     {
       "path": "scripts/compose_hf.py",
-      "bytes": 13919,
-      "sha256": "14f8cec04ab7c14275079725ec6d05ff44e6ee73fc3ab45d5d318583daf32d5b"
+      "bytes": 6896,
+      "sha256": "6a4dda8c0a571701ceaa4462890df27e430ee10d74c062233f006e14c82dce2a"
     },
     {
       "path": "scripts/fetch_commons.py",
@@ -311,13 +326,23 @@
     },
     {
       "path": "scripts/hf/page.html",
-      "bytes": 2165,
-      "sha256": "757c050635abdf860f23c0d88158b98525029d1dd74846366b767c4301676dce"
+      "bytes": 3187,
+      "sha256": "e9dd325b9d6d54be78db222331a8f073c20f4869dba3e913e1a1ae21a681a35d"
     },
     {
       "path": "scripts/hf/runtime.js",
-      "bytes": 15782,
-      "sha256": "ea485e7a361042c1149222a33b623266526f8e5e2743a1b61705dba5a7fce394"
+      "bytes": 16323,
+      "sha256": "e1e83f1e8f1e7de7f078225b97c911953ef199986c28b37b885bbb95b9558145"
+    },
+    {
+      "path": "scripts/hyperframes_cli.py",
+      "bytes": 1226,
+      "sha256": "2828e2913f87f3f640ab844d671b5345097b2afd121f8559f96016927d6089e0"
+    },
+    {
+      "path": "scripts/hyperframes_pipeline.py",
+      "bytes": 10539,
+      "sha256": "f04aae7c6791c97baf301e2e5cf9c605e1be9a3661efd7a2d48a521a3669aae7"
     },
     {
       "path": "scripts/package_clean.py",
@@ -341,13 +366,13 @@
     },
     {
       "path": "setup.ps1",
-      "bytes": 1379,
-      "sha256": "b151180fe2e8f49a92e9d99dc75f4af3d134f3f10ec671d01ab7bf5b6a8d7273"
+      "bytes": 1919,
+      "sha256": "33778c9bcca31351d990625432300f1263139b92c006a23823ce8e0a1388e5ca"
     },
     {
       "path": "setup.sh",
-      "bytes": 431,
-      "sha256": "f4d9172624ca8e6c5529a2a4082818ba083cc654ee8813419e95d9ecbaf64c80"
+      "bytes": 640,
+      "sha256": "c2c7bd9e20353d81e6475a5e2202c482438e72290defe35c638463c734958182"
     },
     {
       "path": "templates/cuts.json",
@@ -391,8 +416,8 @@
     },
     {
       "path": "transcript/demo/hf_plan.json",
-      "bytes": 3689,
-      "sha256": "aadb1f5b19695fbecc744bbc612128ebb3bba031d9285dc38b55bf7da85c1bca"
+      "bytes": 3498,
+      "sha256": "dfb638d51a8ec01289c54159980a527a03db0bc61687273aa83d5f9ef6724b0d"
     },
     {
       "path": "transcript/demo/pieces.json",

@@ -1,6 +1,6 @@
 # Editing instructions
 
-Read README.md, docs/EDITING_METHOD.md and docs/PLAN_REFERENCE.md. This folder is an independent starter kit. The demo is entirely synthetic; never treat its illustrative words as an actual speaker transcript.
+Read README.md, docs/EDITING_METHOD.md and docs/PLAN_REFERENCE.md. For motion graphics also read docs/HYPERFRAMES.md and use the pinned real HyperFrames CLI. This folder is an independent starter kit. The demo is entirely synthetic; never treat its illustrative words as an actual speaker transcript.
 
 ## Workflow
 
@@ -15,7 +15,7 @@ Read README.md, docs/EDITING_METHOD.md and docs/PLAN_REFERENCE.md. This folder i
 ## Two styles
 
 - Dynamic (compose.py): face / split / full; jump-cut zooms, short b-roll montages, logo/stamp/comment/text_hook/HUD graphics; up to 3-word captions. Keep captions away from the mouth.
-- Motion cards (compose_hf.py): light/dark theme, scene types counter/window/tiles/chat/stack/strike/checklist/converge/comment; 1–2-word captions with mono/capsule/serif emphasis options. Keep the speaker object for real talking-head work and calibrate it.
+- Real HyperFrames motion cards (compose_hf.py): light/dark theme, scene types counter/window/tiles/chat/stack/strike/checklist/converge/comment; 1–2-word captions with mono/capsule/serif emphasis options. Keep the speaker object for real talking-head work and calibrate it. Never substitute a custom Playwright capture loop or Remotion.
 - Source geometry is normalized to 1080x1920; speaker coordinates must be measured there. Full hair/head must remain visible. Card narrower than scaled video; no black sides. Never shrink the face width or change identity for a cover.
 - Do not assume the sample crop and zoom values work on new footage. Review mouth/hair positions throughout the clip.
 

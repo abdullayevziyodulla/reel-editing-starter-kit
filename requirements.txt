@@ -5,4 +5,3 @@ google-genai==2.27.0
 python-dotenv==1.2.4
 faster-whisper==1.2.1
 mediapipe==1.0.1
-playwright==1.63.0

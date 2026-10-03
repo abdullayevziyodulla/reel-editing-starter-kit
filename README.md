@@ -1,6 +1,6 @@
 # Reel Editing Starter Kit
 
-A complete folder for AI-assisted vertical talking-head editing with Python, FFmpeg and optional HTML motion cards. Unzip anywhere, install the tools, add **your own** footage, and ask your editing assistant to read `CLAUDE.md` or `AGENTS.md`.
+A complete folder for AI-assisted vertical talking-head editing with Python, FFmpeg and the real HyperFrames framework for HTML motion graphics. Unzip anywhere, install the tools, add **your own** footage, and ask your editing assistant to read `CLAUDE.md` or `AGENTS.md`.
 
 This is a clean reusable method, not a copy of someone's media library. It contains no real faces, creator profile photos, private transcripts, channel records, personal prompts, account IDs, API keys or purchased music/SFX packs. The demo uses geometric placeholders, illustrative English text and a test tone rather than a real person or voice.
 
@@ -12,7 +12,7 @@ This is a clean reusable method, not a copy of someone's media library. It conta
 - Dynamic style: face/split/full b-roll, punch-ins, animated titles, HUD, logo cards, myth/fact stamps, typing CTA, word-timed captions.
 - Clean motion-card style: light/dark canvas, 9 scene types, animated browser windows, list tiles, chats, stacks, counters and optional speaker head breakout.
 - Font portability: bundled Inter and italic Playfair Display with their OFL license files; no Windows font copying or network font dependency during rendering.
-- Playwright Chromium instead of a required Edge installation; optional Edge override.
+- Pinned HyperFrames CLI, framework-managed Chrome, media timeline, GSAP seeking, snapshots, Studio preview and MP4 rendering.
 - Unique job creation and reuse for reordered variants; raw→output word timing export, plan validation and review-frame extraction.
 - Generic two-pass final-mix normalization and decoded loudness/true-peak/full-decode checks.
 - Empty credential template, tested direct dependency versions, setup scripts, troubleshooting, plan reference, reusable templates, synthetic demo and inspectable example renders.
@@ -23,9 +23,9 @@ This is a clean reusable method, not a copy of someone's media library. It conta
 
 ## 1. Install
 
-Tested platform: **Windows, Python 3.12, FFmpeg on PATH**. Paths/browser/fonts are portable, and `setup.sh` is supplied for macOS/Linux, but that platform setup has not been tested here. Prefer a short folder path such as `C:\Projects\reel-editing-starter-kit`.
+Tested platform: **Windows, Python 3.12, Node.js 22+, FFmpeg on PATH**. Paths/browser/fonts are portable, and `setup.sh` is supplied for macOS/Linux, but that platform setup has not been tested here. Prefer a short folder path such as `C:\Projects\reel-editing-starter-kit`.
 
-Install Python 3.12 from https://www.python.org/downloads/ and FFmpeg using an installation option linked from https://ffmpeg.org/download.html. Make sure both `ffmpeg -version` and `ffprobe -version` work in a new terminal. FFmpeg needs H.264 (`libx264`), AAC, MP3 encoding and the `loudnorm`, `ebur128`, `sidechaincompress`, `subtitles` filters.
+Install Node.js 22+ from https://nodejs.org/ (LTS recommended), Python 3.12 from https://www.python.org/downloads/ and FFmpeg using an installation option linked from https://ffmpeg.org/download.html. Make sure `node --version`, `npm --version`, `ffmpeg -version` and `ffprobe -version` work in a new terminal. FFmpeg needs H.264 (`libx264`), AAC, MP3 encoding and the `loudnorm`, `ebur128`, `sidechaincompress`, `subtitles` filters.
 
 From PowerShell inside the unpacked folder:
 
@@ -33,19 +33,20 @@ From PowerShell inside the unpacked folder:
 powershell -ExecutionPolicy Bypass -File .\setup.ps1
 ```
 
-That creates a **new local** `.venv`, installs `requirements.txt`, installs Playwright Chromium, downloads the optional official selfie segmentation model and runs the environment check. Nothing is installed into another editing folder. The execution-policy flag applies to this invocation. If you do not want the head breakout model yet, use `-SkipModel`. If using only the dynamic renderer, `-SkipBrowser` skips its download and launch check; install Chromium before using motion cards.
+That creates a **new local** `.venv`, installs `requirements.txt` and the locked npm dependencies, ensures the HyperFrames Chrome browser, downloads the optional official selfie segmentation model and runs the environment check. Nothing is installed into another editing folder. The execution-policy flag applies to this invocation. If you do not want the head breakout model yet, use `-SkipModel`. If using only the dynamic renderer, `-SkipBrowser` skips browser setup/check; ensure the HyperFrames browser before using motion cards.
 
 You can also run each step yourself:
 
 ```powershell
 py -3.12 -m venv .venv
 .venv/Scripts/python.exe -m pip install -r requirements.txt
-.venv/Scripts/python.exe -m playwright install chromium
+npm ci
+.venv/Scripts/python.exe -X utf8 scripts/hyperframes_cli.py browser ensure
 .venv/Scripts/python.exe -X utf8 scripts/bootstrap.py --model
 .venv/Scripts/python.exe -X utf8 scripts/bootstrap.py --doctor
 ```
 
-For macOS/Linux, install Python 3.12 and FFmpeg first, then `sh setup.sh`. Use `.venv/bin/python` instead of `.venv/Scripts/python.exe`. Playwright may require OS libraries; follow its installation diagnostics. A GPU is not needed. Whisper uses CPU/int8. HTML composition is slower because it screenshots each frame.
+For macOS/Linux, install Python 3.12, Node.js 22+ and FFmpeg first, then `sh setup.sh`. Use `.venv/bin/python` instead of `.venv/Scripts/python.exe`. HyperFrames Chrome may require OS libraries on Linux; follow its diagnostics. A GPU is not required. Whisper uses CPU/int8. Start with one capture worker and short 1080p projects on a MacBook Air; this kit has not yet been benchmarked on an M2.
 
 ## 2. Test without private footage or API calls
 
@@ -61,7 +62,7 @@ For macOS/Linux, install Python 3.12 and FFmpeg first, then `sh setup.sh`. Use `
 .venv/Scripts/python.exe -X utf8 scripts/compose_hf.py raw/demo.mp4 --frames 0.6,2.6,4.8,7.4,8.7,11,12.8,15.3,17.3
 ```
 
-Open the PNGs under `transcript/demo/check/` and **look at them**. The packaged example renders/review sheets are under `examples/previews/` so you can compare before spending time on a full render. To test dark mode, copy `examples/hf_all_scenes_dark.json` into `transcript/demo/hf_plan.json`. Restore the light example afterward if desired.
+Open the HyperFrames PNGs under `transcript/demo/check/hyperframes/` (dynamic frames are directly under `check/`) and **look at them**. The packaged example renders/review sheets are under `examples/previews/` so you can compare before spending time on a full render. To test dark mode, copy `examples/hf_all_scenes_dark.json` into `transcript/demo/hf_plan.json`. Restore the light example afterward if desired.
 
 After inspection:
 
@@ -163,7 +164,20 @@ For motion cards:
 .venv/Scripts/python.exe -X utf8 scripts/compose_hf.py raw/my_clip.mp4 --frames 0.5,3,7
 ```
 
-Run the chosen composer without preview flags only after fixing the review frames. Music starts around -16 dB in the examples, but source mastering varies: instrumental only, listen and adjust, retain sidechain ducking. No single dB setting guarantees a good mix. Short GIFs/videos are decoded into RAM, so avoid huge b-roll files. HTML full renders can take minutes; use frame checks first.
+Run the chosen composer without preview flags only after fixing the review frames. Music starts around -16 dB in the examples, but source mastering varies: instrumental only, listen and adjust, retain sidechain ducking. No single dB setting guarantees a good mix. The dynamic compositor decodes GIFs/videos into RAM, so keep those assets short. HyperFrames handles motion-card media playback and capture; its wrapper defaults to one worker. Full renders can take minutes; use frame checks first.
+
+### Edit the real HyperFrames project directly
+
+`compose_hf.py` builds a self-contained project under `transcript/my_clip/hyperframes/`. Its HTML has a HyperFrames composition root, timed video/audio clips and a registered paused GSAP timeline. HyperFrames owns playback, capture and output encoding; Python prepares the speaker/background and complete audio mix. Fonts, GSAP and media are local. Rendering does not require an API key.
+
+```powershell
+.venv/Scripts/python.exe -X utf8 scripts/compose_hf.py raw/my_clip.mp4 --prepare
+.venv/Scripts/python.exe -X utf8 scripts/hyperframes_cli.py preview transcript/my_clip/hyperframes
+.venv/Scripts/python.exe -X utf8 scripts/hyperframes_cli.py check transcript/my_clip/hyperframes --at 0.5,3,7
+.venv/Scripts/python.exe -X utf8 scripts/hyperframes_cli.py render transcript/my_clip/hyperframes --workers 1 --output output/my_clip_nick.mp4
+```
+
+Edit generated `index.html` and `runtime.js` with your AI or HyperFrames Studio. After direct HTML edits, snapshot/render that project with the CLI: rerunning `compose_hf.py` rebuilds generated files from the JSON plan. `--preview` captures a draft then resizes the output to 540×960; capture itself remains 1080×1920. See `docs/HYPERFRAMES.md`.
 
 ## 7. Normalize and deliver
 
@@ -188,4 +202,4 @@ This validates identical source footage and copies the existing transcript/align
 
 Send the original clean kit ZIP, not your working folder after adding footage and credentials. `scripts/package_clean.py` uses an explicit allowlist and refuses to package unreviewed files. Check `docs/PRIVACY_AND_ASSETS.md`. See `docs/TROUBLESHOOTING.md` for setup, fonts, timing, captions, memory, browser and audio problems. The Python test suite is `python -m unittest discover -s tests -v`.
 
-License: source code, docs and procedural demo assets are MIT; bundled fonts keep their separate OFL licenses. External libraries/models/assets keep their upstream terms. See `LICENSE` and `THIRD_PARTY_NOTICES.md`. This toolkit is independent of FFmpeg, Google, Playwright and any reference creator; no affiliation is implied.
+License: source code, docs and procedural demo assets are MIT; bundled fonts keep their separate OFL licenses. External libraries/models/assets keep their upstream terms. See `LICENSE` and `THIRD_PARTY_NOTICES.md`. This toolkit is independent of FFmpeg, Google, HeyGen/HyperFrames and any reference creator; no affiliation is implied.

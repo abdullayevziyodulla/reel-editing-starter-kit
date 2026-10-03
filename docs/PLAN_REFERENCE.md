@@ -50,7 +50,7 @@ The captions group up to three words, break at punctuation/segment changes, and 
 | stamp | text, kind (x/check) | y |
 | comment | text | type_at local offset, per_char, placeholder, y |
 
-## Clean hf_plan.json
+## HyperFrames hf_plan.json
 
 | Field | Meaning |
 |---|---|
@@ -85,11 +85,11 @@ Every scene has type/start/end. Unless explicitly marked otherwise, inner elemen
 | converge | window media/title fields, chips_at, merge_at, chips [{x,y,label}] |
 | comment | title, placeholder, text, type_at ABSOLUTE, per_char >0, send_at |
 
-For window/converge, `media` is decoded by Python into transparent `data-hole` rectangles; these do not need to be browser-compatible media. Items/img/logo are local image paths converted to file URLs. Avoid HTML-looking text or quote characters in filename metadata; use ordinary descriptions and safe local paths.
+For window/converge, HyperFrames owns persistent timed media clips. Python converts video/GIF b-roll into browser-compatible, scene-length MP4s (respecting `from` and looping) and copies stills/images into the generated project. HTML holes describe animated media geometry only; there is no Python browser-capture or media-paste loop. Project media paths are relative and local. Avoid HTML-looking text or quote characters in filename metadata; use ordinary descriptions and safe local paths.
 
 Auto sounds: card entry → pop/ui_appear, item/stack entry → pop, row/cursor → click, chat/CTA → keyboard, strike → swipe, converge → whoosh, checklist completion → sparkle, return to face → whoosh. Assets are generated in this kit; replace them with licensed sounds if desired, preserving paths or writing explicit sfx. Sound delays use the same output timeline as visuals.
 
-HF frames: `--frames 0.5,3.2` → transcript/<clip>/check/hf_*.png. `--preview` → half-resolution video. Full output is `output/<clip>_nick.mp4`; it is never automatically promoted to final/ in this kit. Use `toolkit.py finalize`.
+HyperFrames frames: `--frames 0.5,3.2` → transcript/<clip>/check/hyperframes/frame-*.png plus contact-sheet.jpg. `--prepare` builds/lints transcript/<clip>/hyperframes/ for direct Studio/HTML editing. `--workers` defaults to 1. `--preview` → draft capture followed by half-resolution video output (capture remains full-size). Full output is `output/<clip>_nick.mp4`; it is never automatically promoted to final/ in this kit. Use `toolkit.py finalize`.
 
 ## Limits
 
@@ -97,5 +97,5 @@ HF frames: `--frames 0.5,3.2` → transcript/<clip>/check/hf_*.png. `--preview` 
 - Alignment is estimated, not forced-alignment ground truth.
 - Some card dimensions/font sizes are fixed; very long text can overflow. Shorten labels or inspect and adjust runtime CSS deliberately.
 - Dynamic title contains a generic eye motif. Use text_hook/logo_card instead for unrelated subjects.
-- GIF/video decoding stores all frames in RAM. Use short lightweight assets.
+- The dynamic compositor stores decoded GIF/video frames in RAM. HyperFrames manages its own media extraction/cache; use one capture worker on memory-constrained laptops.
 - No color LUT manager, masked transitions, multiline karaoke word highlighting or Premiere/Resolve export is implemented.

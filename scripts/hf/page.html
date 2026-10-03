@@ -6,7 +6,11 @@
 </style>
 <style>
   html, body { margin: 0; background: transparent; width: 1080px; height: 1920px; overflow: hidden; }
-  #root { position: relative; width: 1080px; height: 1920px; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; }
+  #backdrop { position: absolute; inset: 0; width: 1080px; height: 1920px; z-index: 0; }
+  #root { position: absolute; inset: 0; width: 1080px; height: 1920px; z-index: 2; }
+  .media-slot { position:absolute; z-index:1; overflow:hidden; opacity:0; }
+  .media-slot > img, .media-slot > video { display:block; width:100%; height:100%; object-fit:cover; }
   #root > * { position: absolute; }
   .card { position: absolute; background: #fff; border-radius: 36px; transform-origin: center;
           box-shadow: 0 12px 24px rgba(0,0,0,.08), 0 30px 70px rgba(0,0,0,.10); }
@@ -26,7 +30,17 @@
   [data-theme="dark"] .chip.big { background:#1A1C21; }
   [data-theme="dark"] .bubble.ai { background:#282b33; color:#fff; }
 </style></head>
-<body><div id="root"></div>
+<body><div id="stage" data-composition-id="reel" data-start="0" data-duration="__DURATION__" data-width="1080" data-height="1920" data-fps="30">
+<video id="backdrop" class="clip" data-start="0" data-duration="__DURATION__" data-track-index="0" src="assets/backdrop.mp4" muted playsinline preload="auto"></video>
+__MEDIA__
+<div id="root" class="clip" data-start="0" data-duration="__DURATION__" data-track-index="2"></div>
+<audio id="mix" class="clip" data-start="0" data-duration="__DURATION__" data-track-index="3" data-volume="1" src="assets/mix.m4a"></audio>
+</div>
 <script>window.PLAN = __PLAN__;</script>
+<script src="gsap.min.js"></script>
 <script src="runtime.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+window.__timelines['reel'] = timeline;
+</script>
 </body></html>

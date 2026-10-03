@@ -13,3 +13,7 @@ output/*
 final/*
 !final/.gitkeep
 assets/models/*.tflite
+assets/models/*.source.json
+node_modules/
+renders/
+.hyperframes/

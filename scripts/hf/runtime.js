@@ -1,5 +1,5 @@
-// Frame-deterministic scene renderer. Python calls render(t) per frame, then screenshots the transparent page.
-// Elements with data-hole are left transparent; Python pastes GIF/video frames into their rects.
+// HyperFrames seeks the registered GSAP timeline. No custom browser capture loop.
+// Persistent media clips are managed by HyperFrames; holes only describe their animated geometry.
 const DARK = PLAN.theme === "dark";
 document.documentElement.dataset.theme = DARK ? "dark" : "light";
 const W = 1080, H = 1920, TOP_CY = 465;
@@ -44,7 +44,7 @@ const SCENES = {
     }
     return `<div class="win" style="left:${x}px;top:${y}px;width:${w}px;${tf(p)}opacity:${p.o * o}">
         <div class="bar"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span>${esc(sc.title || "")}</span></div>
-        <div data-hole="${sc.media}" data-r="22" data-from="${sc.from || 0}" data-start="${sc.start}" data-op="${p.o * o}" style="height:${mh}px"></div>
+        <div data-hole="${sc.media}" data-media-id="${sc.media_id}" data-r="22" data-from="${sc.from || 0}" data-start="${sc.start}" data-op="${p.o * o}" style="height:${mh}px"></div>
       </div>${cursor}`;
   },
 
@@ -91,7 +91,7 @@ const SCENES = {
              <div style="position:absolute;left:190px;top:100px;font:800 50px Inter;color:#111">${esc(c.repo)}</div>
              <div style="position:absolute;left:190px;top:168px;display:flex;gap:14px">${c.chips.map(x => `<span class="chip">${esc(x)}</span>`).join("")}</div>`
           : `<img src="${c.img}" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);height:${c.h || 110}px">
-             ${c.tag ? `<span class="chip" style="position:absolute;right:30px;top:24px;background:#28c840;color:#fff">${esc(c.tag)}</span>` : ""}`;
+             ${c.tag ? `<span class="chip" style="position:absolute;right:30px;top:24px;background:#1b8734;color:#fff">${esc(c.tag)}</span>` : ""}`;
         html += `<div class="card" style="left:${W / 2 - 420}px;top:${y}px;width:840px;height:230px;${tf(p)}opacity:${p.o * o}">${inner}</div>`;
       }
       y += 270;
@@ -140,7 +140,7 @@ const SCENES = {
       if (a <= 0) return;
       const m = easeOut((t - sc.merge_at) / 0.45);
       const x = lerp(c.x, cx, m), y = lerp(c.y, cy, m), s = lerp(1, 0.2, m), op = a * (1 - clamp((t - sc.merge_at - 0.3) / 0.15));
-      html += `<span class="chip big" style="position:absolute;left:${x}px;top:${y}px;transform:translate(-50%,-50%) scale(${s});opacity:${op}">${c.label}</span>`;
+      html += `<span class="chip big" data-layout-allow-overlap="true" style="position:absolute;left:${x}px;top:${y}px;transform:translate(-50%,-50%) scale(${s});opacity:${op}">${c.label}</span>`;
     });
     return html;
   },
@@ -154,7 +154,7 @@ const SCENES = {
       <div style="position:absolute;left:40px;top:36px;font:800 42px Inter;color:#111">${esc(sc.title)}</div>
       ${sent ? `<div style="position:absolute;left:40px;top:120px;display:flex;align-items:center;gap:22px;${tf(pop(t, sc.send_at, 0.7))}">
           <div style="width:76px;height:76px;border-radius:50%;background:conic-gradient(#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5,#feda75)"></div>
-          <div><div style="font:800 32px Inter;color:#111">siz <span style="font:500 28px Inter;color:#999">hozirgina</span></div>
+          <div><div style="font:800 32px Inter;color:#111">siz <span style="font:500 28px Inter;color:#777">hozirgina</span></div>
           <div style="font:500 40px Inter;color:#111">${esc(sc.text)}</div></div></div>` : ""}
       <div style="position:absolute;left:30px;right:30px;bottom:34px;height:110px;border-radius:55px;background:#f2f2f4;display:flex;align-items:center;padding:0 22px 0 36px">
         <span style="font:500 44px Inter;color:${n ? "#111" : "#aaa"}">${n ? esc(sent ? "" : sc.text.slice(0, n)) : esc(sc.placeholder)}</span>
@@ -182,7 +182,7 @@ function captionHTML(t) {
 }
 function modeAt(t) { const l = PLAN.layout.find(l => t >= l.start && t < l.end); return l ? l.mode : "top"; }
 
-async function render(t) {
+function render(t) {
   let html = "";
   for (const sc of PLAN.scenes) if (t >= sc.start && t < sc.end) html += SCENES[sc.type](sc, t);
   html += captionHTML(t);
@@ -197,10 +197,26 @@ async function render(t) {
     const c = root.lastElementChild;
     if (c && c.querySelector("span[style*=background]")) c.style.color = "#111";
   }
-  await Promise.all([...root.querySelectorAll("img")].map(i => i.decode()));
+  document.querySelectorAll('.media-slot').forEach(e => { e.style.opacity = '0'; });
   return [...root.querySelectorAll("[data-hole]")].map(e => {
     const r = e.getBoundingClientRect();
+    const slot = document.getElementById(e.dataset.mediaId);
+    if (slot) Object.assign(slot.style, {
+      left: `${r.left}px`, top: `${r.top}px`, width: `${r.width}px`, height: `${r.height}px`,
+      borderRadius: `${e.dataset.r}px`, opacity: e.dataset.op,
+    });
     return { key: e.dataset.hole, x: r.left, y: r.top, w: r.width, h: r.height, r: +e.dataset.r,
              op: +e.dataset.op, local: t - +e.dataset.start + +e.dataset.from };
   });
 }
+
+// A property setter runs even when a seek suppresses GSAP event callbacks.
+// This makes repeated, backward and random seeks reconstruct the same scene.
+const clock = {
+  _value: 0,
+  get value() { return this._value; },
+  set value(t) { this._value = t; render(t); },
+};
+const timeline = gsap.timeline({ paused: true });
+timeline.fromTo(clock, { value: 0 }, { value: PLAN.duration, duration: PLAN.duration, ease: 'none' }, 0);
+render(0);

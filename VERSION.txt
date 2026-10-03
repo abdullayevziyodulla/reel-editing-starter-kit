@@ -1,2 +1,2 @@
-Reel Editing Starter Kit 1.0.0
+Reel Editing Starter Kit 1.1.0 — HyperFrames
 2026-10-03
