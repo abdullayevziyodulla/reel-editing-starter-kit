@@ -1,8 +1,10 @@
-# Release verification — HyperFrames 1.1.0, 2026-10-03
+# Release verification — HyperFrames 1.1.1, 2026-10-03
 
 Tested on Windows with Python 3.12.10, Node.js 24.20.0, FFmpeg 9.0.1 and pinned HyperFrames 0.8.114. Python dependencies use the previously verified kit venv. Node dependencies are installed with `npm ci`. The Python lock remains a Windows/Python 3.12 reference.
 
 Passed checks:
+
+- 1.1.1 restores the original Gemini transcription model order. Offline tests cover default/fallback behavior, configuration precedence and cached-transcript reuse. No live Gemini transcription was performed for this patch.
 
 - All Python scripts compile; PowerShell setup parses.
 - Required imports, bundled Inter font loading and the actual HyperFrames CLI/browser pass.

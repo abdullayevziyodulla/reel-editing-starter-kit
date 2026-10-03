@@ -9,7 +9,7 @@
 | Browser Linux dependency error | Follow HyperFrames/Chrome's OS dependency diagnostics; platform setup outside Windows is not tested in this kit. |
 | Font cannot open | Ensure assets/fonts contains Inter.ttf and PlayfairDisplay-Italic.ttf. Don't substitute Windows font paths; OFL files are included. |
 | Existing transcript but API/model error | Do not transcribe again. Use existing segments/words, write cuts, render. Pass a current --model only for genuinely new transcription. |
-| Gemini model unavailable/rate limit | Verify the current audio-capable model ID and account access; retry later. The script retries three times and avoids logging credential-bearing exception details. |
+| Gemini model unavailable/rate limit | Default order: gemini-3.5-flash → gemini-3.8-flash → gemini-flash-latest, with three attempts per model. A custom GEMINI_MODEL or explicit --model uses only that model. Verify account access or retry later. Credential-bearing exception details are not logged. |
 | Words are misspelled | Correct Gemini segment text and regenerate matching alignment intentionally. Don't adopt Whisper's ASR spelling as authoritative Uzbek. |
 | Audio already available but PyAV errors | Alignment already passes FFmpeg numpy audio into Whisper; don't change it back to a PyAV filename path. |
 | Caption times are wrong after reorder | Rebuild pieces, export timing and remake plans. Word arrays must be sorted on the new output timeline. |

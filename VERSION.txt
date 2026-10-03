@@ -1,2 +1,2 @@
-Reel Editing Starter Kit 1.1.0 — HyperFrames
+Reel Editing Starter Kit 1.1.1 — HyperFrames + transcription defaults
 2026-10-03

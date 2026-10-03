@@ -17,7 +17,20 @@ from google import genai
 from google.genai import types
 
 ROOT = Path(__file__).resolve().parent.parent
-MODELS = []  # Populated from --model / GEMINI_MODEL in main; no stale fallback IDs.
+DEFAULT_MODELS = ("gemini-3.5-flash", "gemini-3.8-flash", "gemini-flash-latest")
+MODELS = list(DEFAULT_MODELS)
+
+
+def select_models(model=None, config=None):
+    """Use the original fallback chain unless the user chooses a custom model."""
+    if model and model.strip():
+        return [model.strip()]
+    config = config or {}
+    configured = (os.environ.get("GEMINI_MODEL") or "").strip()
+    configured = configured or (config.get("GEMINI_MODEL") or "").strip()
+    if configured and configured != DEFAULT_MODELS[0]:
+        return [configured]
+    return list(DEFAULT_MODELS)
 
 
 def run(cmd):
@@ -92,11 +105,10 @@ def main():
     ap.add_argument("--noise", type=float, default=-35)
     ap.add_argument("--min-silence", type=float, default=0.30)
     ap.add_argument("--force", action="store_true")
-    ap.add_argument("--model", help="Gemini audio-capable model ID; can also set GEMINI_MODEL")
+    ap.add_argument("--model", help="Use only this Gemini model; otherwise 3.5 Flash with fallbacks")
     ap.add_argument("--language", default="Uzbek (Latin script)")
     a = ap.parse_args()
     os.environ["TRANSCRIPT_LANGUAGE"] = a.language
-    MODELS[:] = [a.model or os.environ.get("GEMINI_MODEL", "")]
 
     clip = Path(a.clip).resolve()
     job = ROOT / "transcript" / clip.stem
@@ -105,9 +117,7 @@ def main():
         print(f"Already transcribed: {out}")
         return
     config = dotenv_values(ROOT / ".env")
-    MODELS[0] = MODELS[0] or config.get("GEMINI_MODEL", "")
-    if not MODELS[0]:
-        sys.exit("Set GEMINI_MODEL or pass --model with a current audio-capable model ID.")
+    MODELS[:] = select_models(a.model, config)
     (job / "chunks").mkdir(parents=True, exist_ok=True)
 
     info = probe(clip)

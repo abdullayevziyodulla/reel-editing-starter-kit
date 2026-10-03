@@ -1,13 +1,13 @@
 {
   "name": "Reel Editing Starter Kit",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "date": "2026-10-03",
   "privacy": "Explicit reviewed source/doc/font/procedural-asset/synthetic-demo inventory; no user media or secrets.",
   "files": [
     {
       "path": ".env.example",
-      "bytes": 202,
-      "sha256": "3195b7f06012784d786b47f4ddf452e498923146ffd8451399f146eb7d472818"
+      "bytes": 249,
+      "sha256": "8a50571b4f510840942f7b21fe18d8056b89215ac8c5459649ec23632a4a3391"
     },
     {
       "path": ".gitignore",
@@ -36,8 +36,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 16984,
-      "sha256": "abc19416889a5c9db091572c44b4c14800c1202ae298fb8d5835a724a8b3f311"
+      "bytes": 17139,
+      "sha256": "451ac9e323f5a85905997d4695ff85bab3eaea48e3a1d3777e37a731e0e7b996"
     },
     {
       "path": "START_HERE_UZ.md",
@@ -51,8 +51,8 @@
     },
     {
       "path": "VERSION.txt",
-      "bytes": 58,
-      "sha256": "1cfa668d3b928939fdf9183f7118706acfd290652b58755f09bcca2ec0da3e6b"
+      "bytes": 83,
+      "sha256": "375538acc598596bd1e48657ded742b91c3b2186900aaec7c333e7544838d402"
     },
     {
       "path": "assets/broll/demo_1.png",
@@ -196,13 +196,13 @@
     },
     {
       "path": "docs/TROUBLESHOOTING.md",
-      "bytes": 3960,
-      "sha256": "a2dfb55c5c9e54c0133cfe97ed085803bf6cdfb4caac24f5f8e225d054143efa"
+      "bytes": 4061,
+      "sha256": "a5ccd608dd28a8b56a3b10d6442f033be0d249c3e354bafbf32cb62d8c6c8a53"
     },
     {
       "path": "docs/VERIFICATION.md",
-      "bytes": 3445,
-      "sha256": "a75618d87fde9bbd88ddcaf8a3982d7a9c0ae37020272085b0ec30ff3243d774"
+      "bytes": 3670,
+      "sha256": "de5661af9188803911a06d35559c05cb355be67656e969ca78966f6f2cb1d12c"
     },
     {
       "path": "examples/dynamic_all_graphics.json",
@@ -267,12 +267,12 @@
     {
       "path": "package-lock.json",
       "bytes": 62526,
-      "sha256": "0a37c0bab8d1e2b09ee21ceb98a8e9d26b541601a45b93b3c36bb6bd3c792d65"
+      "sha256": "393d65e86f77684c124914ee876e273cf95cc9c8feff417414df56114fa3a70f"
     },
     {
       "path": "package.json",
-      "bytes": 362,
-      "sha256": "8c54a8c1930ede02508e1e60b54fd7e7915d4bd8d69473d782e8cfd802b20321"
+      "bytes": 368,
+      "sha256": "2c0c470a2bcba032071e4b56b67a82770281b18f543e67a5b9882d471d585d5c"
     },
     {
       "path": "raw/.gitkeep",
@@ -361,8 +361,8 @@
     },
     {
       "path": "scripts/transcribe.py",
-      "bytes": 6489,
-      "sha256": "7d89f727bf4794886c1cd735530321ac4cf1e73e7561b02dbd2b50726457a8e0"
+      "bytes": 6662,
+      "sha256": "f9c5cb5a3af75f270606e770d794bcbe3e4d4c926ffdbfa86d43b2a279dc1075"
     },
     {
       "path": "setup.ps1",
@@ -398,6 +398,11 @@
       "path": "tests/test_timing.py",
       "bytes": 3860,
       "sha256": "473cfa9f8039cc4ae0d658479951763027353e68ed079cc26e39af427788666d"
+    },
+    {
+      "path": "tests/test_transcribe.py",
+      "bytes": 2068,
+      "sha256": "1013a8ababd181dd030350c82a474a613f4697317a609a8def65bcca339b66e0"
     },
     {
       "path": "transcript/.gitkeep",

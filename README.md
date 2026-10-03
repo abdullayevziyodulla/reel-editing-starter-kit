@@ -85,10 +85,10 @@ This copies your video into `raw/my_clip.mp4`, creates `transcript/my_clip/check
 
 ### New transcription
 
-Create your own Gemini API key through https://aistudio.google.com/ and keep it locally. Copy `.env.example` to `.env` and fill **only the new local file**. Do not upload it, print it, paste it in chat or share a working folder containing it. Alternatively set `GEMINI_API_KEY` in your process environment. Set `GEMINI_MODEL` in the process environment or your local `.env`, or supply `--model`. Choose an audio-input-capable model ID supported by your account from https://ai.google.dev/gemini-api/docs/models; the model name is configurable because availability changes.
+Create your own Gemini API key through https://aistudio.google.com/ and keep it locally. Copy `.env.example` to `.env` and fill **only the new local file**. Do not upload it, print it, paste it in chat or share a working folder containing it. Alternatively set `GEMINI_API_KEY` in your process environment. Transcription defaults to `gemini-3.5-flash`, then tries `gemini-3.8-flash` and `gemini-flash-latest` after retries. This restores the original project's model order. Blank `GEMINI_MODEL`, or its bundled value `gemini-3.5-flash`, uses that chain. A different `GEMINI_MODEL` selects only that model; `--model` overrides all settings and also selects only that model. Availability depends on your account; see https://ai.google.dev/gemini-api/docs/models.
 
 ```powershell
-.venv/Scripts/python.exe -X utf8 scripts/transcribe.py raw/my_clip.mp4 --model YOUR_CURRENT_AUDIO_MODEL --language "Uzbek (Latin script)"
+.venv/Scripts/python.exe -X utf8 scripts/transcribe.py raw/my_clip.mp4 --language "Uzbek (Latin script)"
 .venv/Scripts/python.exe -X utf8 scripts/align.py raw/my_clip.mp4 --language uz
 ```
 
