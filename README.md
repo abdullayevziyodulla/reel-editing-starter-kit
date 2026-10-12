@@ -6,6 +6,17 @@ This is a clean reusable method, not a copy of someone's media library. It conta
 
 **Uzbek quick start:** `START_HERE_UZ.md`. **AI handoff prompt:** `PROMPT_FOR_YOUR_AI.md`.
 
+## See the demo
+
+Explore the bundled synthetic examples before installing:
+
+- [Watch the dynamic editing demo](examples/previews/demo-dynamic.mp4).
+- [Watch the motion-card demo](examples/previews/demo-motion-cards.mp4).
+- [View the dynamic review sheet](examples/previews/dynamic_review.jpg).
+- [View light motion cards](examples/previews/hf-light_review.jpg) or [dark motion cards](examples/previews/hf-dark_review.jpg).
+
+The demos use geometric placeholders, illustrative text and a test tone. They show the visual styles without real footage or API calls.
+
 ## What is included
 
 - Full pipeline: speech-region detection → Gemini text → Whisper word alignment → cuts → composition → final audio verification.
